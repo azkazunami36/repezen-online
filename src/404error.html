@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found</title>
+  <style>
+    /* 全体のスタイル */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* 紫色を50%透明にする */
+    z-index: 0; /* オーバーレイを最背面に配置 */
+  }
+
+  /* コンテナを前面に配置 */
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+    /* コンテナ */
+    .container {
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    /* アニメーション */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* 404のスタイル */
+    .error-code {
+      font-size: 8rem;
+      font-weight: bold;
+      color: rgba(255, 255, 255, 0.8);
+      text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    /* メッセージのスタイル */
+    .message {
+      font-size: 1.5rem;
+      margin-top: 20px;
+      color: #ddd;
+    }
+
+    /* ボタンのスタイル */
+    .btn {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 1rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      background: linear-gradient(135deg, #ff7e5f, #feb47b);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+      transition: 0.3s ease-in-out;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      transform: translateY(-3px);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="error-code">404</div>
+    <p class="message">ページが見つかりませんでした。<br>入力したURLが正しいか確認してください。</p><p>脅されてqouteをやむを得ず削除された場合があります</p>
+    <a href="https://repezen.online/cdn/" class="btn">ホームに戻る</a>
+  </div>
+  <script>
+    // JSONファイルから背景画像をランダムに選択
+    fetch("files.json")
+      .then(response => {
+        if (!response.ok) throw new Error("背景画像リストを取得できませんでした。");
+        return response.json();
+      })
+      .then(files => {
+        if (files.length === 0) throw new Error("利用可能な画像がありません。");
+        
+        // ランダムに画像を選択
+        const randomImage = files[Math.floor(Math.random() * files.length)];
+        
+        // 背景画像を設定
+        document.body.style.backgroundImage = `url(${randomImage})`;
+      })
+      .catch(error => {
+        console.error(error.message);
+        alert("背景画像の読み込みに失敗しました。");
+      });
+  </script>
+</body>
+</html>

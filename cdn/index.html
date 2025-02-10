@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Future Design</title>
+  <style>
+    /* 全体のスタイル */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1a1a1d, #4e4e50);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ヘッダー */
+    header {
+      text-align: center;
+      padding: 50px 20px;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    /* コンテンツセクション */
+    .content {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .content h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .content p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .content .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: bold;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      border: none;
+      border-radius: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .content .btn:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      transform: translateY(-3px);
+    }
+
+    /* フッター */
+    footer {
+      padding: 20px 0;
+      text-align: center;
+      background: #1a1a1d;
+      color: #999;
+      font-size: 0.9rem;
+      border-top: 1px solid #333;
+    }
+
+    footer a {
+      color: #00c6ff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to the Quote Museum</h1>
+    <p>Administrator: Jyup</p>
+  </header>
+  <div class="content">
+    <h2>博物館を見てみる</h2>
+    <p>
+      このボタンを押すとランダムなqunoteが表示されます。
+    </p>
+    <button class="btn" id="randomButton">!!ランダムに表示!!</button>
+  </div>
+  <footer>
+    <p>&copy; 2025 Future Vision. All Rights Reserved. <a href="#">Privacy Policy</a></p>
+  </footer>
+  <script>
+    document.getElementById("randomButton").addEventListener("click", async () => {
+      try {
+        // JSONファイルを取得
+        const response = await fetch("files.json");
+        if (!response.ok) throw new Error("ファイルリストを取得できませんでした。");
+
+        const files = await response.json();
+        if (!files || files.length === 0) throw new Error("PNGファイルがありません。");
+
+        // ランダムなファイルを選択
+        const randomFile = files[Math.floor(Math.random() * files.length)];
+
+        // 選ばれた画像にリダイレクト
+        window.location.href = randomFile;
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+  </script>
+</body>
+</html>

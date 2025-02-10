@@ -1,0 +1,58 @@
+/* styles.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #8B0000 0%, #FF0000 50%, #FFFFFF 85%);
+ /* 背景色を黒 */
+    color: #fff; /* 文字色を白 */
+    line-height: 1.6;
+}
+
+header {
+    background-color: #111; /* ヘッダー部分を黒の濃淡で分ける */
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #444;
+}
+
+header h1 {
+    margin: 0;
+    color: #0af; /* アクセントカラー */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #0af;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 2rem;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+footer {
+    background: linear-gradient(135deg, #8B0000 0%, #FF0000 50%, #FFFFFF 85%);
+
+    color: #666;
+    text-align: center;
+    padding: 1rem;
+    border-top: 1px solid #444;
+}

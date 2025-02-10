@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>画像一覧</title>
+  <style>
+  
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #fff;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .gallery img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <h1>画像ギャラリー</h1>
+  <div class="gallery"></div>
+
+  <script>
+  
+    fetch('files.json')
+      .then(response => response.json())
+      .then(data => {
+        const gallery = document.querySelector('.gallery');
+        
+
+        data.files.forEach(file => {
+          const img = document.createElement('img');
+          img.src = file; 
+          img.alt = 'Gallery Image';
+          gallery.appendChild(img);
+        });
+      })
+      .catch(error => {
+        console.error('Error loading files.json:', error);
+      });
+  </script>
+</body>
+</html>
